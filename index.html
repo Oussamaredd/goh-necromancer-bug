@@ -10,13 +10,15 @@
       --bg: #1f1f1f;
       --panel: #242424;
       --panel-2: #2b2b2b;
+      --panel-3: #303030;
       --text: #f2f2f2;
       --muted: #b9b9b9;
-      --line: #333;
+      --line: #343434;
       --accent: #64d2ff;
       --gold: #ffd400;
-      --bad: #ff4d4d;
+      --bad: #ff5c5c;
       --good: #8ee66b;
+      --shadow: rgba(0, 0, 0, 0.35);
     }
 
     * {
@@ -46,8 +48,12 @@
       margin: 0 0 12px;
       font-size: 34px;
       line-height: 1.15;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    h2, h3 {
+      margin-top: 0;
     }
 
     .meta {
@@ -55,6 +61,7 @@
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      font-weight: 700;
     }
 
     .date {
@@ -70,13 +77,69 @@
       border-radius: 10px;
       overflow: hidden;
       margin-bottom: 24px;
+      box-shadow: 0 16px 40px var(--shadow);
     }
 
     .card-header {
       padding: 14px 18px;
       background: var(--panel-2);
       border-bottom: 1px solid var(--line);
-      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .card-title {
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid #464646;
+      background: linear-gradient(180deg, #3b3b3b, #2f2f2f);
+      color: var(--text);
+      text-decoration: none;
+      min-height: 38px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: transform 120ms ease, border-color 120ms ease, background 120ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: #686868;
+      background: linear-gradient(180deg, #454545, #343434);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn.primary {
+      border-color: rgba(100, 210, 255, 0.55);
+      background: linear-gradient(180deg, rgba(100, 210, 255, 0.22), rgba(100, 210, 255, 0.10));
+      color: #e8f8ff;
+    }
+
+    .btn svg {
+      width: 17px;
+      height: 17px;
+      flex: 0 0 auto;
     }
 
     .card-body {
@@ -102,14 +165,6 @@
       border-collapse: collapse;
     }
 
-    th {
-      text-align: left;
-      color: var(--text);
-      padding: 12px 10px;
-      border-bottom: 1px solid var(--line);
-      font-size: 15px;
-    }
-
     td {
       padding: 13px 10px;
       border-bottom: 1px solid var(--line);
@@ -122,7 +177,7 @@
 
     .label {
       color: var(--accent);
-      font-weight: 700;
+      font-weight: 800;
       white-space: nowrap;
       width: 190px;
     }
@@ -143,19 +198,19 @@
       background: #333;
       color: var(--gold);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 800;
       margin-right: 6px;
       margin-bottom: 6px;
     }
 
     .bad {
       color: var(--bad);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .good {
       color: var(--good);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .note {
@@ -166,6 +221,91 @@
       margin-top: 28px;
       color: var(--muted);
       font-size: 14px;
+    }
+
+    dialog {
+      width: min(920px, calc(100vw - 32px));
+      max-height: min(82vh, 900px);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 0;
+      color: var(--text);
+      background: var(--panel);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: var(--panel-2);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .modal-title {
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .modal-body {
+      padding: 22px;
+      overflow: auto;
+    }
+
+    .report {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .report h2 {
+      font-size: 22px;
+      margin: 26px 0 10px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .report h2:first-child {
+      margin-top: 0;
+    }
+
+    .report p {
+      margin: 8px 0 14px;
+    }
+
+    .report code {
+      background: #151515;
+      border: 1px solid #3b3b3b;
+      padding: 2px 6px;
+      border-radius: 6px;
+      color: var(--gold);
+    }
+
+    .close-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid #4a4a4a;
+      background: #333;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    .close-btn:hover {
+      background: #3e3e3e;
     }
 
     @media (max-width: 800px) {
@@ -181,20 +321,27 @@
         grid-template-columns: 1fr;
       }
 
+      .card-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .card-actions {
+        width: 100%;
+      }
+
+      .btn {
+        justify-content: center;
+        flex: 1 1 auto;
+      }
+
       .label {
         width: auto;
       }
 
-      td, th {
+      td {
         display: block;
         width: 100%;
-      }
-
-      th {
-        display: none;
-      }
-
-      td {
         border-bottom: none;
         padding: 8px 10px;
       }
@@ -208,6 +355,10 @@
       tr:last-child {
         border-bottom: none;
       }
+
+      .modal-body {
+        padding: 18px;
+      }
     }
   </style>
 </head>
@@ -217,11 +368,32 @@
     <header>
       <h1>Guilds of Hyppos - Necromancer Selection Bug</h1>
       <div class="meta">Bug report</div>
-      <div class="date">Map version: v1.45c</div>
+      <div class="date">Map version: GoH_RPG_Reforged_v1.45c_prot</div>
     </header>
 
     <section class="card">
-      <div class="card-header">Video proof</div>
+      <div class="card-header">
+        <div class="card-title">Video proof</div>
+
+        <div class="card-actions">
+          <a class="btn" href="bug.mp4" download="goh-necromancer-selection-bug.mp4" aria-label="Download bug video">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v11m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Download video
+          </a>
+
+          <button class="btn primary" type="button" id="openReport">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M14 3v6h5M8 13h8M8 17h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Full report
+          </button>
+        </div>
+      </div>
+
       <div class="card-body">
         <video controls preload="metadata">
           <source src="bug.mp4" type="video/mp4" />
@@ -231,7 +403,10 @@
     </section>
 
     <section class="card">
-      <div class="card-header">Summary</div>
+      <div class="card-header">
+        <div class="card-title">Summary</div>
+      </div>
+
       <div class="card-body">
         <table>
           <tr>
@@ -264,7 +439,10 @@
 
     <section class="grid">
       <div class="card">
-        <div class="card-header">Reproduction steps</div>
+        <div class="card-header">
+          <div class="card-title">Reproduction steps</div>
+        </div>
+
         <div class="card-body">
           <ol>
             <li>Have Necromancer with at least one skeleton/minion active.</li>
@@ -278,7 +456,10 @@
       </div>
 
       <div class="card">
-        <div class="card-header">Result</div>
+        <div class="card-header">
+          <div class="card-title">Result</div>
+        </div>
+
         <div class="card-body">
           <p>
             <span class="good">Expected:</span>
@@ -298,7 +479,10 @@
     </section>
 
     <section class="card">
-      <div class="card-header">Ways to reset the bug in-game</div>
+      <div class="card-header">
+        <div class="card-title">Ways to reset the bug in-game</div>
+      </div>
+
       <div class="card-body">
         <ul>
           <li>Single-select the Necromancer hero.</li>
@@ -311,7 +495,10 @@
     </section>
 
     <section class="card">
-      <div class="card-header">Suspected cause</div>
+      <div class="card-header">
+        <div class="card-title">Suspected cause</div>
+      </div>
+
       <div class="card-body">
         <p>
           This looks like a command-card or selection-state issue caused by selecting a ground item before
@@ -325,5 +512,110 @@
       Report page created to demonstrate a reproducible Necromancer selection bug in Guilds of Hyppos.
     </div>
   </main>
+
+  <dialog id="reportDialog" aria-labelledby="reportTitle">
+    <div class="modal-header">
+      <div class="modal-title" id="reportTitle">Full bug report</div>
+      <button class="close-btn" type="button" id="closeReport" aria-label="Close report">×</button>
+    </div>
+
+    <div class="modal-body">
+      <article class="report">
+        <h2>Map version</h2>
+        <p><code>GoH_RPG_Reforged_v1.45c_prot</code></p>
+
+        <h2>Bug title</h2>
+        <p>
+          Guilds of Hyppos Necromancer spells become unusable after selecting a ground item,
+          then box-selecting hero with skeletons/minions.
+        </p>
+
+        <h2>Class</h2>
+        <p>Necromancer</p>
+
+        <h2>Reproduction steps</h2>
+        <ol>
+          <li>Have Necromancer with at least one active skeleton/minion.</li>
+          <li>Have an item on the ground nearby.</li>
+          <li>Click/select the item on the ground.</li>
+          <li>
+            Immediately box-select the Necromancer hero together with other owned units,
+            such as skeletons/minions/pet.
+          </li>
+          <li>The hero becomes the main selected unit in the group selection tab.</li>
+          <li>Try using any Necromancer spell.</li>
+        </ol>
+
+        <h2>Expected result</h2>
+        <p>
+          The Necromancer hero should be able to cast spells normally after being
+          box-selected with owned units.
+        </p>
+
+        <h2>Actual result</h2>
+        <p>
+          The hero is selected and visible as the main unit, but all hero spells become
+          unusable. Both spell hotkeys and manually clicking the spell icons do not work.
+          Movement, selection, and other normal unit control still work.
+        </p>
+
+        <h2>Important details</h2>
+        <p>
+          The bug only seems to happen after selecting a ground item first, then
+          box-selecting a group containing the hero and at least one other unit.
+          It does not seem to happen from normal single hero selection.
+          It requires more than one selected unit, for example hero + skeleton.
+          Skeleton/minion existence seems related, because the issue can disappear after
+          skeletons expire/despawn.
+        </p>
+
+        <h2>Ways to fix/reset it in-game</h2>
+        <ul>
+          <li>Wait until skeletons/minions expire.</li>
+          <li>Single-select the hero again.</li>
+          <li>Box-select only the hero.</li>
+          <li>Use Tab to cycle selected units until it returns to the hero.</li>
+          <li>Select another non-item target, then reselect the hero.</li>
+        </ul>
+
+        <h2>Possible cause</h2>
+        <p>
+          This seems to be a command card / selection priority issue. After selecting a
+          ground item, then box-selecting Necromancer with skeletons or pet, the game
+          shows the hero as the main selected unit, but the hero spell command card does
+          not properly accept orders. The issue may be related to Necromancer summons
+          being included in the same selection group after item selection.
+        </p>
+      </article>
+    </div>
+  </dialog>
+
+  <script>
+    const reportDialog = document.getElementById("reportDialog");
+    const openReport = document.getElementById("openReport");
+    const closeReport = document.getElementById("closeReport");
+
+    openReport.addEventListener("click", () => {
+      reportDialog.showModal();
+    });
+
+    closeReport.addEventListener("click", () => {
+      reportDialog.close();
+    });
+
+    reportDialog.addEventListener("click", (event) => {
+      const dialogBox = reportDialog.getBoundingClientRect();
+
+      const clickedOutside =
+        event.clientX < dialogBox.left ||
+        event.clientX > dialogBox.right ||
+        event.clientY < dialogBox.top ||
+        event.clientY > dialogBox.bottom;
+
+      if (clickedOutside) {
+        reportDialog.close();
+      }
+    });
+  </script>
 </body>
 </html>
