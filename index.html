@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Guilds of Hyppos Necromancer Bug</title>
+  </head>
+  <body>
+    <h1>Guilds of Hyppos - Necromancer Selection Bug</h1>
+
+    <video controls width="900">
+      <source src="bug.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <h2>Reproduction</h2>
+    <ol>
+      <li>Have Necromancer + skeleton/minion + pet near an item on the ground.</li>
+      <li>Click the item on the ground.</li>
+      <li>Box-select the hero together with skeleton/minion/pet.</li>
+      <li>Hero appears selected as the main unit.</li>
+      <li>Hero spells become unusable. Both hotkeys and manual spell clicks fail.</li>
+      <li>Movement and attack still work.</li>
+      <li>The issue resets by single-selecting the hero, box-selecting only the hero, pressing Tab back to the hero, or waiting for skeletons to expire.</li>
+    </ol>
+
+    <h2>Suspected cause</h2>
+    <p>
+      This looks like a command-card or selection-state bug caused by selecting a ground item before box-selecting Necromancer together with summons.
+    </p>
+  </body>
+</html>
